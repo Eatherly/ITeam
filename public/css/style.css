@@ -1,0 +1,38 @@
+.container {
+  width: 80%;
+  text-align: center; }
+
+.tableOfColors {
+  border: 1px solid #ddd;
+  border-right: none;
+  font-family: monospace;
+  font-weight: bold;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: navy; }
+  .tableOfColors .itemNumber {
+    border-right: 1px solid #ddd; }
+  .tableOfColors .colorName:first-letter {
+    text-transform: uppercase; }
+  .tableOfColors tr:first-child {
+    color: darkslategray; }
+
+#itemNumber {
+  width: 5%;
+  border-right: 1px solid #ddd;
+  line-height: 33px;
+  text-align: center;
+  padding: 0; }
+
+#colorName {
+  width: 10%;
+  padding: 0; }
+
+#hexValue {
+  padding: 0; }
+
+.orderButton {
+  width: 100%;
+  height: 100%; }
