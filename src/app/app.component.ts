@@ -105,6 +105,7 @@ export class AppComponent implements OnInit {
                     this.secondsHTML = this.getSeconds(this.tiks);
                     this.minutesHTML = this.getMinutes(this.tiks);
                     this.hoursHTML = this.getHours(this.tiks);
+                    if(this.clickWaitCount!=0){this.waitTiks=this.tiks}
                     this.clickWaitCount=0;
                     this.increment=0
     }
