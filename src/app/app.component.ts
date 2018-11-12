@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
     hoursHTML: number = 0;
     interval:number;
     sub: Subscription;
+    sub2: Subscription;
     clickWaitCount:number=0;
     increment=0;
     startStopClass:string="btn-success";
@@ -59,7 +60,7 @@ export class AppComponent implements OnInit {
         let timerStart = timer(1, 1000);
         this.sub = timerStart.subscribe(
             (t:number) => {
-            this.getTicks(t)
+            this.getTiks(t)
             }
         )  
     }
@@ -80,34 +81,30 @@ export class AppComponent implements OnInit {
         this.sub.unsubscribe();
     }
     
-    private wait(){
-        this.clickWaitCount++;
-        if (this.startStop=="Stop" && this.clickWaitCount>1){
-            this.sub.unsubscribe();
-            this.clickWaitCount++;
-            this.increment=1
-            
-            console.log(this.interval-+(new Date()));
-            this.interval=+(new Date());
-            
-            this.waitTiks=this.tiks;
-            let timerWait = timer(300,1000);
-            this.sub = timerWait.subscribe(
-                (t:number) => {
-                    this.getTicks(t)
-                }
-            )
-        }
-    }
     
-    private getTicks(t:number){
+     private wait(){
+          
+        if (this.startStop=="Stop"){
+            this.clickWaitCount++;
+            let timerWait = timer(300);
+            if(this.clickWaitCount==2){ this.start_stop() ; this.sub2.unsubscribe(); this.clickWaitCount=0;}
+            else {
+                this.sub2 = timerWait.subscribe(
+                    (t:number) => {
+                    this.clickWaitCount=0;
+                    }
+                )
+            }
+        }
+     }
+    
+    private getTiks(t:number){
                     this.tiks=t+this.waitTiks+this.increment;
                     this.secondsHTML = this.getSeconds(this.tiks);
                     this.minutesHTML = this.getMinutes(this.tiks);
                     this.hoursHTML = this.getHours(this.tiks);
-                    if(this.clickWaitCount!=0){this.waitTiks=this.tiks}
                     this.clickWaitCount=0;
-                    this.increment=0
+                    this.increment=0;
     }
    
 
